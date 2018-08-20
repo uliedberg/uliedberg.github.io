@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>thirdparty - popup</title>
+    <link href="./index.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <h1>thirdparty - popup</h1>
+    <p>
+      origin: <strong><span id="origin">not updated</span></strong>
+    </p>
+
+    <h3>actions</h3>
+    <ul>
+      <li><a id="foo-cookie-read-action" href="#">[read cookie]</a></li>
+      <li><a id="foo-cookie-write-action" href="#">[write cookie]</a></li>
+      <li><a id="close-window" href="#">[close window]</a></li>
+    </ul>
+
+    <h3>values/results</h3>
+    <ul>
+        <li>cookie named foo: <strong><span id="foo-cookie-result">not updated</span></strong></li>
+    </ul>
+
+    <script src="./popup.js"></script>
+
+  </body>
+</html>

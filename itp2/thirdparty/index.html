@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>thirdparty - index</title>
+    <link href="./index.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <h1>thirdparty - index</h1>
+    <p>
+      origin: <strong><span id="origin">not updated</span></strong>
+    </p>
+
+    <h3>actions</h3>
+    <ul>
+      <li><a id="storage-access-request-action"href="#">[request access]</a></li>
+      <li><a id="foo-cookie-action" href="#">[read cookie]</a></li>
+      <li>open <a href="./popup.html" target="_blank">popup</a> in new window</li>
+    </ul>
+
+    <h3>values/results</h3>
+    <ul>
+        <li>Storage Access allowed on load result: <strong><span id="storage-access-on-load-result">not updated</span></strong></li>
+        <li>Storage Access Request result: <strong><span id="storage-access-request-result">not updated</span></strong></li>
+        <li>cookie named foo: <strong><span id="foo-cookie-result">not updated</span></strong></li>
+    </ul>
+
+    <script src="./index.js"></script>
+
+  </body>
+</html>
