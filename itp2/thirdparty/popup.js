@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 function updateElWithOrigin(selector) {
-  updateDomElementText(document.querySelector(selector), document.origin);
+  updateDomElementText(document.querySelector(selector), window.origin);
 }
 
 function addCloseFeature(selector) {
