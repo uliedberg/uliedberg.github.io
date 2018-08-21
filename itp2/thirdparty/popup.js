@@ -3,7 +3,13 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   updateElWithOrigin('#origin');
   addCloseFeature('#close-window');
-  addFooCookieFeature({ actions: { read: '#foo-cookie-read-action', write: '#foo-cookie-write-action' }, result: '#foo-cookie-result' })
+  addFooCookieFeature({
+    actions: {
+      read: '#foo-cookie-read-action',
+      write: '#foo-cookie-write-action',
+      delete: '#foo-cookie-delete-action'
+    },
+    result: '#document-cookie-value' })
 });
 
 
@@ -28,23 +34,23 @@ function addFooCookieFeature(selectors) {
   });
   document.querySelector(selectors.actions.write).addEventListener('click', function (e) {
     e.preventDefault();
-    writeJsCookie('foo', uuidv4());
+    writeJsCookie('foo', uuidv4(), 60*60*24*365);
+    udateDomWithCookieVal(resultElement);
+  });
+  document.querySelector(selectors.actions.delete).addEventListener('click', function (e) {
+    e.preventDefault();
+    writeJsCookie('foo', '', 0);
     udateDomWithCookieVal(resultElement);
   });
 }
 
 function udateDomWithCookieVal(resultElement) {
-  updateDomElementText(resultElement, readJsCookie() || 'no value in cookie');
+  updateDomElementText(resultElement, (document.cookie || 'no value in cookie'));
 }
 
-// TODO: add a name arg :)
-function readJsCookie() {
-  return document.cookie.replace(/(?:(?:^|.*;\s*)foo\s*\=\s*([^;]*).*$)|^.*$/, '$1');
-}
-
-function writeJsCookie(name, value) {
+function writeJsCookie(name, value, maxAge) {
   const eTldPlusOne = document.location.hostname.replace(/.*\.(.*\..*)/, '$1');
-  const cookieString = `${name}=${value};domain=${eTldPlusOne};max-age=${60*60*24*365}`;
+  const cookieString = `${name}=${value};domain=${eTldPlusOne};path=/;max-age=${maxAge}`;
   console.log('cookie string about to be assigned to document.cookie: ', cookieString);
   document.cookie = cookieString;
 }
