@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   addHasStorageAcessOnLoad({ result: '#storage-access-on-load-result' });
   addRequestStorageAccess({ action: '#storage-access-request-action', result: '#storage-access-request-result', cookieResult: '#foo-cookie-result' });
   addFooCookieFeature({ action: '#foo-cookie-action', result: '#foo-cookie-result' })
+  addReloadListenter({ action: '#reload-iframe'});
 });
 
 
@@ -63,6 +64,13 @@ function addFooCookieFeature(selectors) {
   document.querySelector(selectors.action).addEventListener('click', function (e) {
     e.preventDefault();
     udateDomWithCookieVal(resultElement);
+  });
+}
+
+function addReloadListenter(selectors) {
+  document.querySelector(selectors.action).addEventListener('click', function (e) {
+    e.preventDefault();
+    location.reload();
   });
 }
 
