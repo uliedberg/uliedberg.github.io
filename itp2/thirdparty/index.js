@@ -3,8 +3,8 @@
 document.addEventListener('DOMContentLoaded', function(event) {
   updateElWithOrigin('#origin');
   addHasStorageAcessOnLoad({ result: '#storage-access-on-load-result' });
-  addRequestStorageAccess({ action: '#storage-access-request-action', result: '#storage-access-request-result', cookieResult: '#foo-cookie-result' });
-  addFooCookieFeature({ action: '#foo-cookie-action', result: '#foo-cookie-result' })
+  addRequestStorageAccess({ action: '#storage-access-request-action', result: '#storage-access-request-result', cookieResult: '#document-cookie-value' });
+  addFooCookieFeature({ action: '#foo-cookie-action', result: '#document-cookie-value' })
   addReloadListenter({ action: '#reload-iframe'});
 });
 
@@ -45,9 +45,8 @@ function addRequestStorageAccess(selectors) {
       function () {
         console.log('requestStorageAccess successful');
         updateDomElementText(resultElement, 'resolved successfully');
-        const cookieVal = readJsCookie();
-        // TODO: auto-popup if no value to test if that makes a difference?
-        console.log(`trying to read cookie in successful resolved request... val: ${cookieVal}`);
+        // TODO: auto-popup if no document.cookie values to test if that makes a difference?
+        console.log(`trying to read cookie in successful resolved request... document.cookie: ${document.cookie}`);
         udateDomWithCookieVal(cookieResultElement);
       },
       function () {
@@ -75,18 +74,13 @@ function addReloadListenter(selectors) {
 }
 
 function udateDomWithCookieVal(resultElement) {
-  updateDomElementText(resultElement, readJsCookie() || 'no value in cookie');
+  updateDomElementText(resultElement, (document.cookie || 'no value in cookie'));
 }
 
 function updateDomElementText(element, text) {
   element.innerHTML = text;
   element.classList.add('updated');
   setTimeout(function () { element.classList.remove('updated'); }, 200);
-}
-
-// TODO: add a name arg :)
-function readJsCookie() {
-  return document.cookie.replace(/(?:(?:^|.*;\s*)foo\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 }
 
 function uuidv4 () {
