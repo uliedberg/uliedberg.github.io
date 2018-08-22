@@ -2,6 +2,7 @@ User-Agent: *
 
 Disallow: /hidden
 Disallow: /liv
+Disallow: /itp2
 
 Disallow: /harming/humans
 Disallow: /ignoring/human/orders
